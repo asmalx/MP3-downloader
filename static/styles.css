@@ -5,8 +5,10 @@ body {
 	color: #F1ECC3;	
 	background-color: 	#515E63;
 	background: url("image/bg1c1.jpg") repeat;
-
-	
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 *, 
@@ -118,7 +120,7 @@ body {
     line-height: 50px;
     border: 1px solid #F1ECC3;
     margin-left: 15px;
-    background-color: #515E63;
+    background-color: rgba(0,0,0,0);
     color: #F1ECC3;
     text-transform: uppercase;
     font-size: 15px;
@@ -151,6 +153,12 @@ body {
 	border-radius: 3px;
 
 }
+
+/* -------------------------FEEDBACK INFO---------------------------*/
+.loading{
+	display: none;
+}
+
 .flash_info{
 	display: flex;
 	margin-left: auto;
@@ -193,16 +201,24 @@ body {
 	background: #F1ECC3;
 	align-items: center;
 }
+.text_description h4{
+	margin: 10px;
+	vertical-align: middle;
+
+}
+.text_description p{
+	margin: 0px;
+}
+
 .buttons{
     display: flex;
 }
 .video{
-	display: block;
-
+	display: flex;
 	margin-left: auto;
     margin-right: auto;
 	margin-bottom: 20px;
-	border: 1px solid #F1ECC3;
+	border: none;
 }
 .title_saver{
     display: none;
@@ -210,7 +226,7 @@ body {
 
 /* -------------------------CONTAINER BUTTONS---------------------------*/
 
-.container_button{
+.container_button, .container_button_ready{
     cursor: pointer;
     display: block;
     height: 40px;
@@ -238,6 +254,11 @@ body {
     background-color: #2a3133;
     color: #F1ECC3;
 
+}
+
+.container_button_ready{
+    background-color: #2a3133;
+    color: #F1ECC3;	
 }
 /* -------------------------MORE BUTTON---------------------------*/
 .container_more{

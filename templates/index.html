@@ -5,8 +5,10 @@
 <head> 
 	<meta charset = "utf-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='animation_style.css') }}">
+	
 	<title> Download from youtube </title>
 </head>
 <body>
@@ -29,8 +31,25 @@
 			<div class="search_interact">
 				<form id="search_form" action="{{url_for('submit')}}" method="POST" novalidate>
 					<input type="text" id="search_input" name="search_input" class="search_input" placeholder="Enter video link or title here..." autocomplete="on">
-					<input type="submit" class="search_button" name="search_button" value="Search">
+					<input type="submit" class="search_button" name="search_button" value="Search" onclick="search_click()">
 					<div class "flash_info">
+					<p id="message_text">
+							{%if get_flashed_messages() %}
+							{{get_flashed_messages().pop()}}
+							{%endif%}
+					</p>
+					</div>
+					<div class="loading" id="loading">
+						<div id="square">
+							<div id="square_1" class="square"></div>
+							<div id="square_2" class="square"></div>
+							<div id="square_3" class="square"></div>
+							<div id="square_4" class="square"></div>
+							<div id="square_5" class="square"></div>
+							<div id="square_6" class="square"></div>
+							<div id="square_7" class="square"></div>
+							<div id="square_8" class="square"></div>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -48,17 +67,18 @@
 					<p>{{video.description}}</p>
 				</div>
 					<form class="buttons"  action="{{url_for('video')}}" method="POST" novalidate>
-						<input type="submit" class="container_button" name="button" value={{video.show_video}}>	
-						<input type="submit" class="container_button" name="button" value="Download">	
-						<input type="text" class="title_saver" name="data" value={{video.number}}>	
+						<input type="button" class="container_button" name="button" id="show_button{{video.number}}" value="Show"   onclick="show_click({{video.number}}, '{{video.link}}')">	
+						{%if  video.ready%}
+							<input type="submit" class="container_button_ready" name="button" value="Save">	
+						{%else%}
+							<input type="submit" class="container_button" name="button" value="Download" onclick="download_click()">	
+						{%endif%}
+						<input type="text" class="title_saver" name="data" value="{{video.number}}">	
 					</form>
 			</div>
-			{%if video.show_video == "Hide"%}
-				<div class="container">
-					<iframe class="video" width="600" height="300" src={{video.link}}>
-					</iframe>
+				<div id="video{{video.number}}" style="display:none;">
+					<iframe  class="video" width="600" height="300" src="{{video.link}}"></iframe>
 				</div>
-			{%endif%}
 		{%endfor%}
 	{%endif%}
 
@@ -81,4 +101,5 @@
 
 </body>
 
+<script type="text/javascript" src="{{ url_for('static',filename='script.js') }}"></script>
 </html>

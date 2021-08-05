@@ -24,7 +24,7 @@ def get_linklist_by_title(searh_request):
 
 
 def search_video_data(link):
-    video = {"show_video":"Show"}
+    video = {'ready':False}
     # convert link to embedded type
     video["link_internal"] = link
     video["link"] = "https://www.youtube.com/embed/"+link[link.find("v=")+2:]
@@ -35,7 +35,7 @@ def search_video_data(link):
 
     return video
 
-    video = {"show_video":"Show"}
+    video = {}
     # convert link to embedded type
     video["link_internal"] = link
     video["link"] = "https://www.youtube.com/embed/"+link[link.find("v=")+2:]
@@ -45,7 +45,7 @@ def search_video_data(link):
     video["title"] = soup.title.text
     return video
 
-def download_track(video):
+def get_stream(video):
     # get_highest_resolution
     yt = YouTube(video["link_internal"])
     streams = yt.streams.filter(only_audio=True, abr='256kbps')
@@ -65,8 +65,7 @@ def download_track(video):
     #print("abr", abr, streams) 
     if not streams:
         video['description'] = video['description'] + ' | unavailable to download'
-        return
-    streams[0].download(filename=streams[0].title+'.mp3')       
+    return streams[0], streams[0].title+'.mp3'  
     
    # video = VideoFileClip("temp.mp4")
    # video.audio.write_audiofile(video['title']+".mp3")
