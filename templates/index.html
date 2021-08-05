@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<html>
+<head> 
+	<meta charset = "utf-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<title> Download from youtube </title>
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<div class="header_inner">
+				<a class="header_title" href="\index"><b>GET MP3</b>	</a>
+				<nav class="nav">
+					<a class="nav_link" href="#about"> About </a>
+					<a class="nav_link" href="#"> ... </a>
+
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<div class="search">
+		<div class="container">
+			<h1 class="search_title"> Search for video</h1>
+			<div class="search_interact">
+				<form id="search_form" action="{{url_for('submit')}}" method="POST" novalidate>
+					<input type="text" id="search_input" name="search_input" class="search_input" placeholder="Enter video link or title here..." autocomplete="on">
+					<input type="submit" class="search_button" name="search_button" value="Search">
+					<div class "flash_info">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{%if videos%}
+		{% for video in videos %}
+			<div class="result_container">
+				<div class="number">
+					<h1>{{video.number}}</h1>
+				</div>
+				<div class="text_description">
+					<h4>{{video.title}}</h4>
+					<p>{{video.description}}</p>
+				</div>
+					<form class="buttons"  action="{{url_for('video')}}" method="POST" novalidate>
+						<input type="submit" class="container_button" name="button" value={{video.show_video}}>	
+						<input type="submit" class="container_button" name="button" value="Download">	
+						<input type="text" class="title_saver" name="data" value={{video.number}}>	
+					</form>
+			</div>
+			{%if video.show_video == "Hide"%}
+				<div class="container">
+					<iframe class="video" width="600" height="300" src={{video.link}}>
+					</iframe>
+				</div>
+			{%endif%}
+		{%endfor%}
+	{%endif%}
+
+		<div class="container_more">
+		</div>
+
+	<footer> 
+		<div class="footer">
+			<a name="about"></a>
+              <p>GET MP3 is the free service which allow you to download video from youtube with mp3 format.</p>
+			  <p>How to use it? - Simple:</p>
+              <ul class="footer-list">
+                <li> Enter video link or video title into search bar</li>
+                <li> Click "search" and choose appropriate video</li>
+                <li> Push download button</li>
+              </ul>
+			<div class="end"></div>
+		</div>
+	</footer>
+
+</body>
+
+</html>
