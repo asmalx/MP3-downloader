@@ -59,7 +59,9 @@ def video():
     return render_template("index.html", videos = videos_list)
 
 
-@app.route('/more', methods=["GET"])
-def more():
-    return render_template("index.html", videos = videos_list)
+#@app.route('/more', methods=["GET"])
+#def more():
+#    return render_template("index.html", videos = videos_list)
 
+if __name__ == "__main__":
+    app.run(debug=True)  
