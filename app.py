@@ -14,8 +14,6 @@ def index():
     session['videos'] = [] 
     session['urls'] = [] 
     session['current_title'] = "" 
-
-    print(session)
     return render_template("index.html", videos=False)
 
 
@@ -42,8 +40,6 @@ def submit():
             videos_list.append(video)     
             
         session['videos'] = videos_list      
-
-    print(session)
     return render_template("index.html", videos = session['videos'])
 
 @app.route('/download', methods=["POST"])
@@ -65,7 +61,6 @@ def download():
         session['videos'][video_number-1]['ready'] = True
         session.modified = True
         flash('File is ready. You can download it pushing button "Save"')
-        print(session)
         return render_template("index.html", videos = session['videos'])
 
     elif action == "Save":

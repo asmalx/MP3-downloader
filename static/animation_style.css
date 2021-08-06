@@ -8,7 +8,7 @@
 .square{
 	position:absolute;
 	top:0;
-	background-color:rgb(241,236,195);
+	background-color:#c1c7d1;
 	width:14px;
 	height:14px;
 	animation-name:bounce_square;
@@ -115,7 +115,7 @@
 @keyframes bounce_square{
 	0%{
 		transform:scale(1);
-		background-color:#F1ECC3;
+		background-color:#c1c7d1;
 	}
 
 	100%{
@@ -127,7 +127,7 @@
 @-o-keyframes bounce_square{
 	0%{
 		-o-transform:scale(1);
-		background-color:#F1ECC3;
+		background-color:#c1c7d1;
 	}
 
 	100%{
@@ -139,7 +139,7 @@
 @-ms-keyframes bounce_square{
 	0%{
 		-ms-transform:scale(1);
-		background-color:#F1ECC3;
+		background-color:#c1c7d1;
 	}
 
 	100%{
@@ -151,7 +151,7 @@
 @-webkit-keyframes bounce_square{
 	0%{
 		-webkit-transform:scale(1);
-		background-color:#F1ECC3;
+		background-color:#c1c7d1;
 	}
 
 	100%{
@@ -163,7 +163,7 @@
 @-moz-keyframes bounce_square{
 	0%{
 		-moz-transform:scale(1);
-		background-color:#F1ECC3;
+		background-color:#c1c7d1;
 	}
 
 	100%{
