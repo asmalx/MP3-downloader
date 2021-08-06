@@ -66,7 +66,7 @@
 					<h4>{{video.title}}</h4>
 					<p>{{video.description}}</p>
 				</div>
-					<form class="buttons"  action="{{url_for('video')}}" method="POST" novalidate>
+					<form class="buttons"  action="{{url_for('download')}}" method="POST" novalidate>
 						<input type="button" class="container_button" name="button" id="show_button{{video.number}}" value="Show"   onclick="show_click({{video.number}}, '{{video.link}}')">	
 						{%if  video.ready%}
 							<input type="submit" class="container_button_ready" name="button" value="Save">	

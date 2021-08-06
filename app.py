@@ -1,30 +1,35 @@
 from flask import Flask, render_template, request, url_for, send_file, flash
-
 import functions
-import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'GdOR27zTVl2Rm0VTHkeM'
+app.config['SECRET_KEY'] = '2c7f07064e05560b9745cfef4fda2b7307aaf3f7'
 
+# videos vost for current client
 videos_list, urls = [], []
-ptr, lng  = 0, 'en'
-
+ptr = 0
+# current video title to download
 current_title = ""
 
 @app.route('/') 
 @app.route('/index')
 def index():
-    global videos_list
+    global videos_list, urls, current_title, ptr
+    # if main page - clear data
+    videos_list = urls = []
+    current_title = ""
+    ptr = 0
     return render_template("index.html", tracks=False)
 
 
 @app.route('/submit', methods=["POST"])
 def submit():
+    global videos_list, urls, ptr, current_title
     # reset all old videos 
-    global videos_list, urls, ptr
-    videos_list, urls = [], []
+    videos_list = urls = []
     # at the start, process first 5 videos
     ptr = 0
+    # no chosen video 
+    current_title = ""
 
     title = request.form["search_input"]
     # entered link
@@ -41,8 +46,8 @@ def submit():
             videos_list.append(video)           
     return render_template("index.html", videos = videos_list)
 
-@app.route('/videos', methods=["POST"])
-def video():
+@app.route('/download', methods=["POST"])
+def download():
     global current_title
     action, video_number = request.form["button"], int(request.form["data"])
     #print("Entered action:", action, "entered video id", video_number)
