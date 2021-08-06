@@ -53,7 +53,11 @@ def download():
 
     if action == "Download":
         #print("downloading")
-        stream, session['current_title']  = functions.get_stream(session['videos'][video_number-1])
+        stream, session['current_title'], success = functions.get_stream(session['videos'][video_number-1])
+        if not success:
+            flash('Unavailable to download')
+            return render_template("index.html", videos = session['videos'])
+
         stream.download(filename='temp-download.txt', timeout=60)
         # only one file can be downloaded at moment
         for each in session['videos']:
