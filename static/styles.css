@@ -331,6 +331,9 @@ body {
 	.container_button, .container_button_ready{
 		margin-top: 5px;
 	}
+	.header_title{
+		font-size: 16gitpx;
+	}
 }
 
 @media(max-width:600px){
