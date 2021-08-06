@@ -314,6 +314,10 @@ body {
 	.video{
 		width: 500px; 
 	}
+
+	.header_title{
+		font-size: 18px;
+	}
 }
 
 @media(max-width:800px){
@@ -365,5 +369,8 @@ body {
 	}
 	.video{
 		width: 300px; 
+	}
+	.header_title{
+		font-size: 14px;
 	}
 }

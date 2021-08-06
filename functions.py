@@ -39,24 +39,11 @@ def search_video_data(link):
 def get_stream(video):
     # get_highest_resolution
     yt = YouTube(video["link_internal"])
-    streams = yt.streams.filter(only_audio=True, abr='256kbps')
-    abr = '256kbps'
-    if not streams:
-        streams = yt.streams.filter(only_audio=True, abr='192kbps')
-        abr = '192kbps'   
-    if not streams:
-        streams = yt.streams.filter(only_audio=True, abr='160kbps')
-        abr = '160kbps'   
-    if not streams:
-        streams = yt.streams.filter(only_audio=True, abr='128kbps')
-        abr = '128kbps'   
-    if not streams:
-        streams = yt.streams.filter(only_audio=True, abr='70kbps')
-        abr = '70kbps'
-    #print("abr", abr, streams) 
+    streams = yt.streams.filter(only_audio=True).order_by('abr')
     if not streams:
         video['description'] = video['description'] + ' | unavailable to download'
-    return streams[0], streams[0].title+'.mp3'  
+        return False, False, False;
+    return streams[-1], streams[-1].title+'.mp3', True 
     
    # video = VideoFileClip("temp.mp4")
    # video.audio.write_audiofile(video['title']+".mp3")
