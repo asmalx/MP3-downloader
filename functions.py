@@ -35,16 +35,7 @@ def search_video_data(link):
 
     return video
 
-    video = {}
-    # convert link to embedded type
-    video["link_internal"] = link
-    video["link"] = "https://www.youtube.com/embed/"+link[link.find("v=")+2:]
-    r = requests.get(link)
-    # find title in response
-    soup = BeautifulSoup(r.text, 'html.parser')
-    video["title"] = soup.title.text
-    return video
-
+    
 def get_stream(video):
     # get_highest_resolution
     yt = YouTube(video["link_internal"])

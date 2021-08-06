@@ -292,5 +292,49 @@ body {
 }
 
 
+/* -------------------------ADAPTATION---------------------------*/
 
 
+@media(max-width:800px){
+	.search_button{
+		display: block;
+		width: 100px;
+		margin-top: 10px;
+		margin-left: 0;
+		margin-right: auto;
+	
+	}
+	.search_input{
+		display: block;
+	
+	}
+	.result_container{
+		height: 150px;
+	}
+	.buttons{
+		display: block;
+	}
+	.container_button, .container_button_ready{
+		margin-top: 5px;
+	}
+}
+
+@media(max-width:600px){
+	.search_button{
+		display: block;
+		width: 100px;
+		margin-top: 10px;
+		margin-left: 0;
+		margin-right: auto;
+	
+	}
+	.search_input{
+		display: block;
+		width: 300px;
+
+	}
+	.result_container{
+		height: 200px;
+	}
+
+}
