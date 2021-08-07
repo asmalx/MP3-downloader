@@ -80,8 +80,8 @@ def download():
 
 
 @app.route('/wakemydyno.txt')
-def wakemydyno():
-    return Response("wakemydyno", mimetype="text/plain")
+def get_text():
+    return Response("wakemydyno.txt", mimetype="text/plain")
 
 
 
