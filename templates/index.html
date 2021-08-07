@@ -38,7 +38,7 @@
 		<div class="container">
 			<h1 class="search_title"> Search for video</h1>
 			<div class="search_interact">
-				<form id="search_form" action="{{url_for('submit')}}" method="POST" novalidate>
+				<form id="search_form" action="{{url_for('search')}}" method="POST" novalidate>
 					<input type="text" id="search_input" name="search_input" class="search_input" placeholder="Enter video link or title here..." autocomplete="on">
 					<input type="submit" class="search_button" name="search_button" value="Search" onclick="search_click()">
 					<div class "flash_info">
