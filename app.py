@@ -59,11 +59,12 @@ def download():
 
         try:
             stream, session['current_title'] = functions.get_stream(session['videos'][video_number-1])
+            stream.download(filename='temp-download.txt', timeout=120)
         except:
             flash('Downloading error.')
+            session['videos'][video_number-1]['description'] = session['videos'][video_number-1]['description'] + ' | unavailable to download'
             return render_template("index.html", videos = session['videos'])
 
-        stream.download(filename='temp-download.txt', timeout=60)
         
         # only one file can be downloaded at moment
         for each in session['videos']:
@@ -78,10 +79,16 @@ def download():
     elif action == "Save":
         return send_file('temp-download.txt', as_attachment=True, download_name = session['current_title'] )
 
+@app.errorhandler(503)
+def page_not_found(e):
+    flash('FIle is too big.')
+    return render_template("index.html", videos = session['videos'])
+
+
 
 @app.route('/wakemydyno.txt')
 def get_text():
-    return Response("wakemydyno.txt", mimetype="text/plain")
+    return Response("", mimetype="text/plain")
 
 
 

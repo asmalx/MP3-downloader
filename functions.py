@@ -8,7 +8,7 @@ from pytube import YouTube
 
 
 
-def get_linklist_by_title(searh_request):
+def get_linklist_by_title(searh_request, count=5):
     urls, plst, urls_emb = [], set(), []
     #convert to querry view and get response
     resp = requests.get('https://www.youtube.com/results?search_query=' + searh_request.replace(' ', '+'))
@@ -18,6 +18,8 @@ def get_linklist_by_title(searh_request):
         link = "https://www.youtube.com/watch?v="+obj[11:22]      #create working link from id
         if link not in plst:
             urls.append(link)
+            if len(urls) >= count:
+                return urls
         plst.add("https://www.youtube.com/watch?v="+obj[11:22])   # set is need for checking links repeating
     del plst
     return urls
@@ -40,8 +42,6 @@ def get_stream(video):
     # get_highest_resolution
     yt = YouTube(video["link_internal"])
     streams = yt.streams.filter(only_audio=True).order_by('abr')
-    if not streams:
-        video['description'] = video['description'] + ' | unavailable to download'
     return streams[-1], streams[-1].title+'.mp3' 
     
    # video = VideoFileClip("temp.mp4")
