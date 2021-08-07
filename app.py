@@ -59,7 +59,7 @@ def download():
 
         try:
             stream, session['current_title'] = functions.get_stream(session['videos'][video_number-1])
-            stream.download(filename='temp-download.txt', timeout=120)
+            stream.download(filename='temp-download.txt', timeout=80)
         except:
             flash('Downloading error.')
             session['videos'][video_number-1]['description'] = session['videos'][video_number-1]['description'] + ' | unavailable to download'
