@@ -38,8 +38,7 @@ def search_video_data(link):
     
 def get_stream(video):
     # get_highest_resolution
-   # yt = YouTube(video["link_internal"])
-    yt = YouTube("SUCK")
+    yt = YouTube(video["link_internal"])
     streams = yt.streams.filter(only_audio=True).order_by('abr')
     if not streams:
         video['description'] = video['description'] + ' | unavailable to download'
